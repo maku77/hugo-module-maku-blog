@@ -89,45 +89,38 @@ blockquote {
   }
 }
 
-samp {
-  font-family: arial;
-  background: mix(white, $COLOR_SITE, 80%);
-  border-radius: 0.3em;
-  padding: 0.2em 0.5em;
-}
-
 kbd {
-  > kbd {
-    background: white;
-    border: solid 1px lightgray;
-    padding: 0 0.5em;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: normal;
 
-    > samp::before {
-      font-family: arial;
-      font-weight: normal;
-      color: lightgray;
-      content: "[";
-      padding-right: 0.5em;
-    }
+  // 子要素を一切持たない kbd 要素は枠線で囲む
+  &:not(:has(*)) {
+    padding: 0.05em 0.2em;
+    border: 1px solid #333;
+    border-radius: 0.3em;
+    background: #eee;
 
-    > samp::after {
-      font-family: arial;
-      font-weight: normal;
-      color: lightgray;
-      content: "]";
-      padding-left: 0.5em;
+    // strong の下に kbd があるときは色を変える
+    strong & {
+      // color: $COLOR_TEXT_STRONG;
+      border-color: $COLOR_TEXT_STRONG;
+      background: mix($COLOR_TEXT_STRONG, white, 15%);
     }
   }
+}
 
-  :not(kbd) > & {
-    font-size: 1.1em;
-    font-family: monospace;
-    font-weight: bolder;
-    background: #eee;
-    color: #333;
-    padding: 0.25em 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 0.3em;
+samp {
+  font-family: arial;
+
+  &::before {
+    content: "［";
+    padding-right: 0.1em;
+  }
+
+  &::after {
+    content: "］";
+    padding-left: 0.1em;
   }
 }
 
